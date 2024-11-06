@@ -57,6 +57,7 @@
     - Mengimplementasikan warna-warna yang berbeda untuk setiap tombol
       - Apply warna berdasarkan Index
         - ```dart
+          ...
             Color _getButtonColor(int index) {
               switch (index) {
                 case 0:
@@ -68,8 +69,7 @@
                 default:
                   return Colors.green;
               }
-            }
-          }
+          ...
           ```
       - apply warna pada ItemCard
         - ```dart
