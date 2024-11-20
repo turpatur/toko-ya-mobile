@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toko_ya/screens/menu.dart';
 import 'package:toko_ya/screens/itementry_form.dart';
+import 'package:toko_ya/screens/list_itementry.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -28,7 +29,7 @@ class LeftDrawer extends StatelessWidget {
                 Padding(padding: EdgeInsets.all(8)),
                 Center(
                   child: Text(
-                    "Best place for trading card singles",
+                    "The best Place to buy cards!",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.white,
@@ -55,13 +56,24 @@ class LeftDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.inventory),
             title: const Text('Tambah Item'),
-            // Bagian redirection ke MoodEntryFormPage
+            // Bagian redirection ke ItemEntryFormPage
             onTap: () {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ItemEntryFormPage(),
                   ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Daftar Item'),
+            onTap: () {
+              // Route menu ke halaman Item
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemEntryPage()),
+              );
             },
           ),
         ],

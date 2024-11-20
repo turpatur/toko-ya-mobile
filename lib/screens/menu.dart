@@ -8,8 +8,8 @@ class MyHomePage extends StatelessWidget {
   final String className = 'PBP E'; // Kelas
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Daftar Produk", Icons.inventory),
-    ItemHomepage("Tambah Produk", Icons.add),
+    ItemHomepage("Lihat Item", Icons.inventory),
+    ItemHomepage("Tambah Item", Icons.add),
     ItemHomepage("Logout", Icons.logout),
   ];
 
@@ -17,26 +17,27 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold menyediakan struktur dasar halaman dengan AppBar dan body.
+    // Scaffold provides the basic structure of the page with AppBar and body.
     return Scaffold(
-      // AppBar dengan warna hijau.
+      // AppBar with the title
       appBar: AppBar(
         title: const Text(
-          'Toko-ya',
+          'Toko-ya!',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.green, // Set navbar color to green.
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: const LeftDrawer(),
-      // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Row for InfoCard displaying 3 info items horizontally
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -59,6 +60,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  // Grid to display ItemCards in a 3-column layout
                   GridView.count(
                     primary: true,
                     padding: const EdgeInsets.all(20),
@@ -67,11 +69,10 @@ class MyHomePage extends StatelessWidget {
                     crossAxisCount: 3,
                     shrinkWrap: true,
                     children: items.asMap().entries.map((entry) {
-                      int index = entry.key;
+                      int index = entry.key; // Get the index of the item
                       ItemHomepage item = entry.value;
-                      // Apply different green hues to each button based on index.
-                      return ItemCard(item,
-                          buttonColor: _getButtonColor(index));
+                      // Apply a unique color to each button based on the index
+                      return ItemCard(item, cardColor: _getButtonColor(index));
                     }).toList(),
                   ),
                 ],
@@ -83,7 +84,7 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  // Function to get different shades of green based on index.
+  // Function to get a different shade of green based on index
   Color _getButtonColor(int index) {
     switch (index) {
       case 0:
